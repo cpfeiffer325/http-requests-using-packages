@@ -7,11 +7,18 @@ request.get('https://sytantris.github.io/http-examples/future.jpg')
     throw err;
   })
   .on('response', function (response) {
-    console.log(`Response Status Message: ${response.statusMessage}, Response Headers: ${response.headers['content-type']}`);
+    console.log('Downloading image...');
+    console.log(`
+      Response Status Code: ${response.statusCode}
+      Response Status Message: ${response.statusMessage}
+      Response Headers: ${response.headers['content-type']}
+      `);
+  })
+  .on('end', function  () {
     console.log('Download complete.');
   })
   .pipe(fs.createWriteStream('./future.jpg'));
-  console.log('Downloading image...');
+
 
 // Notes:
 // 1. `request.get` is equivalent to `request()`
